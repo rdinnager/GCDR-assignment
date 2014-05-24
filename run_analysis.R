@@ -29,9 +29,12 @@ full.dat$Activity<-act.lab$V2[full.dat$Activity]
 get.it<-grep("(-mean\\(\\))|(-std\\(\\))",colnames(full.dat),perl=TRUE)
 red.dat<-full.dat[,c(1,2,get.it)]
 
-#use dplyr to get means by Subject and Activity
+# use dplyr to get means by Subject and Activity
+# group_by sets groups to be used in subsequent functions
+# summarise_each applies a function to each column by group, in this case: mean
 dat.means<-group_by(red.dat,Subject,Activity) %.% summarise_each("mean")
 
+# write tidy dataset to csv file for uploading...
 write.csv(dat.means,"Dinnage_GCDR_Assignment_tidyData.csv",row.names=FALSE)
 
 
