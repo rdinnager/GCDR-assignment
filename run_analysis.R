@@ -32,3 +32,6 @@ red.dat<-full.dat[,c(1,2,get.it)]
 #use dplyr to get means by Subject and Activity
 dat.means<-group_by(red.dat,Subject,Activity) %.% summarise_each("mean")
 
+write.csv(dat.means,"Dinnage_GCDR_Assignment_tidyData.csv",row.names=FALSE)
+
+
