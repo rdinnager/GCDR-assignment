@@ -1,4 +1,4 @@
-setwd("/home/annarussell/Projects/GCDR-assignment/UCI HAR Dataset")
+setwd("/home/din02g/Google Drive/Coursera/Data Scientist Specialization/Getting and Cleaning Data/GCDR-assignment/UCI HAR Dataset")
 
 library(dplyr)
 
@@ -28,6 +28,16 @@ full.dat$Activity<-act.lab$V2[full.dat$Activity]
 # extract just the mean and std measurements
 get.it<-grep("(-mean\\(\\))|(-std\\(\\))",colnames(full.dat),perl=TRUE)
 red.dat<-full.dat[,c(1,2,get.it)]
+# get rid of brackets and replace dashes with underscores
+colnames(red.dat)<-gsub("\\(|\\)","",colnames(red.dat))
+colnames(red.dat)<-gsub("-","_",colnames(red.dat),fixed=TRUE)
+# get rid of seemingly redundant extra "Body" in some of the names
+colnames(red.dat)[63:68]<- c("fBodyAccJerkMag_mean",
+                             "fBodyAccJerkMag_std",
+                             "fBodyGyroMag_mean",
+                             "fBodyGyroMag_std",
+                             "fBodyGyroJerkMag_mean",
+                             "fBodyGyroJerkMag_std")
 
 # use dplyr to get means by Subject and Activity
 # group_by sets groups to be used in subsequent functions
