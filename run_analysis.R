@@ -1,17 +1,17 @@
-setwd("/home/din02g/Google Drive/Coursera/Data Scientist Specialization/Getting and Cleaning Data/GCDR-assignment/UCI HAR Dataset")
-
 library(dplyr)
 
 # load test data
 test.dat<-read.table("test/X_test.txt",header=FALSE,stringsAsFactors=FALSE)
 test.sub<-read.table("test/subject_test.txt",header=FALSE,stringsAsFactors=FALSE)
 test.act<-read.table("test/y_test.txt",header=FALSE,stringsAsFactors=FALSE)
+# merge data
 test.full<-cbind(test.sub,test.act,test.dat)
 
 # load train data
 train.dat<-read.table("train/X_train.txt",header=FALSE,stringsAsFactors=FALSE)
 train.sub<-read.table("train/subject_train.txt",header=FALSE,stringsAsFactors=FALSE)
 train.act<-read.table("train/y_train.txt",header=FALSE,stringsAsFactors=FALSE)
+# merge data
 train.full<-cbind(train.sub,train.act,train.dat)
 
 # merge two datasets
