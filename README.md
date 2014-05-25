@@ -15,7 +15,7 @@ Next, the script loads in a file which contains the activity codes, and a descri
 
 Lastly, the script pulls out only the variables of interest in this assignment (means and standard deviations), before calculating their means for each subject and activity combination.
 
-The mean and standard deviation variables are selected using the `grep()` function with a regular expression. The regular expression finds and column name that contains either "-mean()" or "-std()". The trailing "()" is included to exclude variable names which have meanFreq() in the name, which are not of interest here.
+The mean and standard deviation variables are selected using the `grep()` function with a regular expression. The regular expression finds all column names that contains either "-mean()" or "-std()". The trailing "()" is included to exclude variable names which have meanFreq() in the name, which are not of interest here.
 
 The means by subject and treatment are calculated using the [`dplyr`](https://github.com/hadley/dplyr) package, using the `group_by()` and `summarise()` functions. `group_by` creates a data object which indexes the desired groupings. `summarise` applies any function to each subset of the data implied by the grouping index, and returns the result in a data.frame. The `%.%` operator is also part of the `dplyr` package and essentially is used to "pipe" the results of one function into the next without requiring an intermediate variable. The `%>%` operator from the [`magrittr`](https://github.com/smbache/magrittr) package does the same thing for more general use.
 
